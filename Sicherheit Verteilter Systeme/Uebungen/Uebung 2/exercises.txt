@@ -1,0 +1,1 @@
+over.c	- doesn't work in newer compiler versions:			* checks for buffer overflows in code and tires to avoid them 	- stack: BUFFER[] on top of OK[] 			when msg > 8, overflow to OK[] 			if-condition --> if ok[0] != 0, then condition is true

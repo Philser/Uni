@@ -1,0 +1,64 @@
+Aufgabe 1
+
+	2
+	a)
+	In Gästebuch einfügen:
+	
+			<button id="btn1" onclick="changeColor()">Make it red!</button>
+			<script>
+			function changeColor(){
+
+			var elem = document.getElementsByTagName("H1")[0];
+			elem.style.color="red";
+
+			}
+			</script>
+
+	b)
+			
+			<button id="btn1" onclick="changeLinks()">Googlefy all the links!</button>
+			<script>
+			function changeLinks(){
+
+			var elems = document.getElementsByTagName("LI");
+
+			var i;
+			for (i = 0; i < elems.length; i++){
+				if(elems[i].firstChild){
+					var children = elems[i].childNodes;
+					children[0].href="http://www.google.de";	
+				}
+
+			}
+
+			}
+			</script>
+
+	3
+		Schutzmöglichkeiten
+			* Generelles Verstehen des User Inputs als "Bad Input"
+			* Anlegen einer Whitelist für erlaubten Input soweit möglich
+			* Serverseitiges Filtern von Meta-Zeichen vor Datenverarbeitung
+
+
+Aufgabe 2
+
+	a)
+		
+		Reflektiertes/Nicht-persistentes XSS:
+			* Einmaliges Übermitteln von Schadcode an einen Server, der manipulierte Website zurückgibt
+			* Wird serverseitig nicht gespeichert, bei erneutem Seitenaufruf ist Seite nicht mehr manipuliert
+
+		Persistentes XSS:
+			* Nutzereingaben werden serverseitig gespeichert und bei Aufruf verschickt
+			* Schadcode wird somit auch serverseitig gespeichert und an alle User versendet
+			* Neuladen der Website hilft demzufolge nichts
+
+		DOM-basiertes XSS:
+			* XSS ohne Involvierung der Web-App
+			* Bspw. durch Aufruf einer kompromittierten URL in Kombination mit unvorsichtigem URL-Parsing des Clients
+				- Beispiel Wikipedia: http://example.com/foobar.html?arg=<script type="text/javascript">alert("XSS")</script>
+
+	b)
+
+		???

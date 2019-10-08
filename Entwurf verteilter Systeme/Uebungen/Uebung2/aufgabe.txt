@@ -1,0 +1,10 @@
+
+    The user shall be able to select a color by clicking on the colored fields at the bottom.
+
+    If the users clicks on a field in the upper grey square, the color of the clicked field should be changed to the previously selected color.
+
+    If there were any other colored fields, their color should be changed back to grey.
+
+    If a color was selected, insert a text entry "Color changed" colored in the selected color to the DIV element with the ID "Log".
+
+    After 10 clicks on the upper fields an alert with the text "You have clicked 10 times on the field!" should be displayed.

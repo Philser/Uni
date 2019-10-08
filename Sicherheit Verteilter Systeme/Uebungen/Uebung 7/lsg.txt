@@ -1,0 +1,78 @@
+Task 1
+
+	Von oben nach unten
+
+	?
+		DNS A query
+	
+	?
+		DNS A reply
+	
+	Port: ?
+		443 (HTTPS)
+
+	?
+		CipherSuite
+			(contains 4 things: Key exchange, authentication, Hash function, Encryption)
+
+	?
+		Verify server certificate(s)
+
+	?
+		?
+
+	?
+		Send "Server finished"
+
+	?
+		GET www
+		Host: tu.chemnitz.de
+
+a) 	Welche Ziele werden mit SSL/TLS verfolgt? 
+	
+		* Etablierung eines sicheren Kommunikationskanals
+		* Standardisierte Protokolle um Kompatibilität zu erhöhen und damit sichere Kommunikation überall verfügbar zu machen
+
+	
+	Welche Sicherheitslücken gibt es trotz des Einsatzes von SSL/TLS?
+
+
+b)	Wie unterscheidet der Server, welches Zertifikat ausgeliefert werden sol, falls mehrere virtuelle Hosts existieren?
+
+
+
+
+
+Task 2
+	
+Informieren sie sich über die HTTP Digest Authentifizierungsmethode
+
+	HTTP Digest:	* Server sendet Zufallswert(Nonce) an Client 
+					* Client berechnet aus Nonce, Username und Password und ggf. weiteren Werten einen Hash-Wert, den er an Server schickt
+					* Server berechnet seinerseits Hash-Wert und vergleicht mit erhaltenem Wert
+
+1) Inwiefern ist sie besser als HTTP Basic?
+	
+	* HTTP Basic bietet keinen Abhörschutz, da Passwort nur base64-codiert wird, aber nicht verschlüsselt
+		(base64 leicht umkehrbar)
+	* Basic codiert nur aus techn. Gründen, kryptografisch ist base64-codierter Wert das gleiche wie Klartext-Passwort
+	* Digest -> Passwort kann nicht rekonstruiert werden (solange sichere Hash-Funktion verwendet wird)
+
+2) Welche Risiken sind damit trotzdem verbunden?
+	
+	* Rest der Kommunikation nicht sicher, wenn kein SSL/TLS verwendet wird
+
+3) Was würde ein Client als Antwort auf die folgende Server-Nachricht übermitteln, falls sein Nutzername "Max" und sein Passwort "Secure123" sind?
+		
+		* Server-Nachricht = HTTP/1.0 401 Unauthorized WWW-Authenticate: Digest realm="Secured Area",nonce="bla"
+
+
+Task 3
+	
+Informieren Sie sich darüber, wie die Public Key-Authentifizierung im SSH Authentication Protocol funktioniert.
+
+	* Server hat für jeden User einen public key hinterlegt
+	* Clients halten jeweils eigenen private key
+	* Zur Authentifizierung wird clientseitig Signatur aus versch. Werten erstellt und mit private key verschlüsselt
+		(u.a. user name, service name, public key)
+	* Server kann Signatur entschlüsseln und verifizieren

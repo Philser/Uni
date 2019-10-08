@@ -1,0 +1,5 @@
+1.
+	' OR 1=1 OR '
+
+2.
+	Bob' AND (SELECT count(*) FROM gehaelter where name = 'Bob') > 0 OR '

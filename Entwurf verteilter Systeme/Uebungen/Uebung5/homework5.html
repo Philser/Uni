@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="content-type" content="text/html" />
+    <title>jQuery Example</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <style>
+        * {
+            font: 14px normal Arial, sans-serif;
+        }
+        fieldset legend {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+        }
+        table tr th {
+            text-align: left;
+            font-weight: bold;
+        }
+    </style>
+		<script>
+		$(document).ready(function(){
+			$("#add").click(function(){
+				var name = $("#name").val();
+				$("#nameList").append("<tr><th>" + name + "</th><th><button onclick='moveUp(this)'>Up</button><button onclick='moveDown(this)'>Down</button></th></tr>")
+			});
+			
+			$("#sort").click(function(){
+				sort();
+			});
+		});	
+		
+		function moveDown(elem){
+		
+			var parents = $(elem).parents();
+			var next = $(parents[1]).next();
+			$(parents[1]).insertAfter(next);
+		}
+		
+		function moveUp(elem){
+			
+			var parents = $(elem).parents();
+			var prev = $(parents[1]).prev();
+			var first = $(parents[1]).siblings().first();
+			if(!prev.is(first))
+				$(parents[1]).insertBefore(prev);
+		}
+		
+		function sort() {
+			var listElements = [];
+			var names = [];
+			var tCell;
+			var tRows = $("#nameList").find("tr");
+			for(var i = 1; i < tRows.length; i++) { //skip header row
+				tCell = $(tRows[i]).children()[0];
+				listElements[$(tCell).html()] = $(tRows[i]).html(); 
+				names[i - 1] = $(tCell).html();
+			}
+			
+			names = $(names).sort();
+			for(var i = 0; i < names.length; i++) {
+				$(tRows[i + 1]).html(listElements[names[i]]);
+			}
+		}
+		
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Add name</legend>
+        <label for="name">Name: </label><input type="text" id="name" placeholder="Name" />
+        <button id="add">Add</button>
+        <button id="sort">Sort</button>
+    </fieldset>
+    <fieldset>
+        <legend>List of names</legend>
+        <table id="nameList">
+            <tr>
+                <th>Name</th>
+                <th>Operations</th>
+            </tr>
+        </table>
+    </fieldset>
+</body>
+</html>

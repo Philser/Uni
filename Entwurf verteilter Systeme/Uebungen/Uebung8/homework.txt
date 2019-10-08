@@ -1,0 +1,4 @@
+Homework:
+
+Rewrite/extend the example game (empty template) from the exercise and add secure socket support.
+Server-side PHP script for the Ajax solution: cache.php

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<style type="text/css">
+		body {
+			font-family: Arial, sans-serif;
+			padding: 10px;
+		}
+		.leftpart {
+			width: 500px;
+			height: 500px;
+			margin: 5px;
+		}
+	</style>
+	<title>Control</title>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/dojo/1.9.1/dijit/themes/soria/soria.css"/>
+	<script>dojoConfig = { async: true, gfxRenderer: "svg,silverlight,vml" }</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>
+	<script>
+	
+	// establish connection to proxy server and register as controller
+	var proxyServer = new WebSocket("ws://localhost:23023");
+	proxyServer.onopen = function(){
+		var message = {
+			messagetype: "register",
+			data: {
+				type: "control"
+			}
+		}
+		var msgString = JSON.stringify(message);
+		console.log("Sending message: " + msgString);
+		proxyServer.send(msgString);
+	};
+	
+	var bewege = null;
+	var changeSpeed = null;
+
+	var SPEED_FAC = 0.8;
+	require(["dojo/dom", "dijit/form/HorizontalSlider", "dijit/form/HorizontalRuleLabels", "dojox/gfx", "dojo/domReady!"],
+	
+		function (dom, HorizontalSlider, HorizontalRuleLabels, gfx) {
+			changeSpeed = function (newspeed) {
+				tSpeed = newspeed * SPEED_FAC;	
+				var panel = document.getElementById("panel");				
+				panel.innerHTML = tSpeed;
+				
+				//send changed speed value to proxy
+				var message = {
+					messagetype: "control",
+					data: {
+						speed: tSpeed
+					}
+				}
+				var msgString = JSON.stringify(message);
+				console.log("Sending message: " + msgString);
+				proxyServer.send(msgString)
+			}
+
+
+			var slider = new HorizontalSlider({
+				name: "slider",
+				value: 3,
+				minimum: -10,
+				maximum: 10,
+				discreteValues: 21,
+				intermediateChanges: true,
+				style: "width:300px;",
+				onChange: changeSpeed
+			}, "slider");
+
+			var hLabels = new HorizontalRuleLabels({
+				container: "bottomDecoration",
+				style: "width:260px;margin-left:20px;height:2em;font-size:75%;color:gray;"
+			}, "SliderLabels");
+		}
+	);
+</script>
+</head>
+<body class="soria">
+	<h1>Control</h1><hr/>
+	<div id="zeichenflaeche">
+	<div><p id="panel">3</p></div>
+		<div id="slider"></div>
+		<ol id="SliderLabels">
+			<li>-10</li>
+			<li>0</li>
+			<li>10</li>
+		</ol>
+	</div>
+</body>
+</html>

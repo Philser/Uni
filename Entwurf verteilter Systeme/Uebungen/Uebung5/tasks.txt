@@ -1,0 +1,4 @@
+Implement the following functionality using jQuery:
+	* Using the input field and Add button, the user should be able to add an entry to the list of names.
+	* The entry should have two buttons in the Operations column, enabling the user to move an entry up or down.
+	* When clicking the Sort button, the list of names shall be sorted alphabetically.

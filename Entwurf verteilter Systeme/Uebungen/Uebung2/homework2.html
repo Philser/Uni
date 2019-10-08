@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+    <head>
+        <meta charset="UTF-8" />
+        <style>
+            * {
+                font: 14px normal Arial, sans-serif;
+                color: #000000;
+            }
+            table {
+                margin: 50px auto;
+            }
+            table, td {
+                border: 1px solid #aaa;
+                border-collapse: collapse;
+            }
+            th {
+                padding: 10px;
+                font-weight: bold;
+            }
+            td {
+                background-color: #eeeeee;
+                width: 80px;
+                height: 80px;
+            }
+            table tr td {
+                cursor: pointer;
+            }
+            div#Log {
+                position: absolute;
+                top: 50px;
+                left: 50%;
+                width: 120px;
+                height: 310px;
+                margin-left: 180px;
+                background-color: #eeeeee;
+                border: 1px solid #aaa;
+                padding: 10px;
+                overflow: auto;
+            }
+        </style>
+        <script>
+            var lastField = null;
+            var currentFillColor = ''; // ???
+            var changeCounter = 0;     // ??
+
+            function setField(element) {
+            	changeCounter += 1;
+            	if(changeCounter == 10){
+            		alert("You have clicked the field 10 times!");
+            		changeCounter = 0;
+            	}
+            	if(lastField != null)
+            		lastField.style.backgroundColor = "#eeeeee";
+                element.style.backgroundColor = currentFillColor;
+                lastField = element;
+
+                var logElem = document.getElementById("Log");
+                var child = document.createTextNode("Color changed");
+                
+                logElem.appendChild(child);
+                // do with appendChildNode
+            }
+
+            function setFillColor(color) {
+                currentFillColor = color;
+            }
+									
+			/*document.addEventListener("DOMContentLoaded", function(event) { 
+				var fillElems = document.getElementById("table").getElementsByTagName("td");
+				for (var i  = 0; i < fillElems.length; i++){
+					fillElems[i].addEventListener("click", setField(fillElems[i]));
+				}			
+			});*/
+			
+			
+
+        </script>
+    </head>
+    <body>
+        <div id="Log"></div>
+        <table id="table">
+            <tbody>
+                <tr>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                </tr>
+                <tr>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                </tr>
+                <tr>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                </tr>
+                <tr>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                    <td onclick="setField(this)"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="4">Choose a color:</th>
+                </tr>
+            </thead>
+            <tbody> 
+                <tr>
+                    <td onclick="setFillColor(this.style.backgroundColor)" style="background-color:#CC3333;"></td>
+                    <td onclick="setFillColor(this.style.backgroundColor)" style="background-color:#3399FF;"></td>
+                    <td onclick="setFillColor(this.style.backgroundColor)" style="background-color:#339933;"></td>
+                    <td onclick="setFillColor(this.style.backgroundColor)" style="background-color:#999933;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

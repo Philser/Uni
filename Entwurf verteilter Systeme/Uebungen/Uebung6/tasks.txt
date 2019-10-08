@@ -1,0 +1,9 @@
+Modify the given script and add the following functionality:
+
+    * When submitting the form the Post/Redirect/Get-Pattern should be applied. (Add the correct headers at the right place.)
+	
+		Post/Redirect/Get-Pattern:
+			* Answer to a POST with a 303 See other followed by a clientside GET to prevent POSTing data twice in case of refreshing
+	
+    * The account balance should not anymore be stored on the server side in a file. Instead a cookie shall be used to store this information. 
+	(You'll need to use the Set-Cookie header in the response and Cookie header in the request.)

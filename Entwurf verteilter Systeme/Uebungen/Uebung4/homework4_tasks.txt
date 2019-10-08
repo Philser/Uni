@@ -1,0 +1,18 @@
+reate a guestbook using AJAX and the following API:
+
+    There is an HTTP-API that enables access to a guestbook: vsr.informatik.tu-chemnitz.de/edu/2015/evs/exercises/jsajax/guestbook.php
+    This API provides support for the following HTTP methods:
+        GET /guestbook.php - returns a list with all entries
+        GET /guestbook.php - Parameter: id - retuns a single entry with the given id
+        POST /guestbook.php - Parameter: name, text - adds a new entry into the guestbook
+        DELETE /guestbook.php - Parameter: id - removes the entry with the given id
+    The output is always formatted as JSON.
+    Example:
+
+    [{"id": 1, "name": "Peter", "text": "Hallo"}, {"id": 2,"name": "Hans","text": "Test"}]
+
+    When loading the page, all existing entries should be displayed.
+    The user should be able to delete a single entry by clicking on a delete link.
+    Using the existing form elements, the user should be able to add a new entry to the guestbook.
+    The new entry should be displayed instantly.
+    All this functionallity should be done using AJAX and without reloading the page.
